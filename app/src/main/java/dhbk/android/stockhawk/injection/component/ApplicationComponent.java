@@ -11,6 +11,9 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 import dhbk.android.stockhawk.SyncService;
+import dhbk.android.stockhawk.data.DataManager;
+import dhbk.android.stockhawk.data.local.DatabaseHelper;
+import dhbk.android.stockhawk.data.local.PreferencesHelper;
 import dhbk.android.stockhawk.data.remote.StocksService;
 import dhbk.android.stockhawk.injection.ApplicationContext;
 import dhbk.android.stockhawk.injection.module.ApplicationModule;
