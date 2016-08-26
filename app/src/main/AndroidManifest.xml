@@ -21,7 +21,7 @@
             android:value="589643442ce058a0d10001de5eef9b319db74800"
             />
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

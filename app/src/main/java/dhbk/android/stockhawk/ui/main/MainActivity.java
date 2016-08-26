@@ -1,17 +1,19 @@
-package dhbk.android.stockhawk;
+package dhbk.android.stockhawk.ui.main;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import dhbk.android.stockhawk.R;
+import dhbk.android.stockhawk.ui.base.BaseActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity  extends BaseActivity implements
+        MainMvpView, StockAdapter.DismissStockListener {
     private static final String EXTRA_TRIGGER_SYNC_FLAG =
             "rajan.udacity.stock.hawk.ui.main.MainActivity.EXTRA_TRIGGER_SYNC_FLAG";
 
@@ -43,6 +45,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+//        inject activity component
+        activityComponent().inject(this);
+
 
 
     }
