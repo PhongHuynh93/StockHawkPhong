@@ -23,7 +23,7 @@ public class NetworkUtil {
     }
 
     /**
-     * return true if at least one network active
+     * fixme - return true if at least one network active
      * @param context
      * @return
      */

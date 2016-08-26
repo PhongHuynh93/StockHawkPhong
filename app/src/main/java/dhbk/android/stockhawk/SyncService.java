@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.IBinder;
 
+import dhbk.android.stockhawk.util.AndroidComponentUtil;
 import dhbk.android.stockhawk.util.NetworkUtil;
 import timber.log.Timber;
 
@@ -16,7 +17,6 @@ public class SyncService extends Service {
 
     @Override
     public IBinder onBind(Intent intent) {
-        // TODO: Return the communication channel to the service.
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
