@@ -7,19 +7,34 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.IBinder;
 
+import javax.inject.Inject;
+
+import dhbk.android.stockhawk.data.DataManager;
+import dhbk.android.stockhawk.data.model.multiple.Stocks;
 import dhbk.android.stockhawk.util.AndroidComponentUtil;
 import dhbk.android.stockhawk.util.NetworkUtil;
+import dhbk.android.stockhawk.util.Utils;
+import rx.Subscriber;
+import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 import timber.log.Timber;
 
 /**
  * create started service
  */
 public class SyncService extends Service {
+    @Inject
+    DataManager mDataManager;
+
+    private Subscription mSubscription;
+
     public SyncService() {
     }
 
     /**
      * create intent to start this service
+     *
      * @param context
      * @return
      */
@@ -36,16 +51,24 @@ public class SyncService extends Service {
     }
 
     /**
-     * // TODO: 8/26/16
+     * // : 8/26/16
+     * <p>
+     * create application component and inject this service
      */
     @Override
     public void onCreate() {
         super.onCreate();
-        StockHawkApplication.get(this).getComponent().inject(this);
+        // create component and inject to this service
+        StockHawkApplication
+                .get(this)
+                .getComponent()
+                .inject(this);
     }
 
     /**
-     * // TODO: 8/26/16
+     * // : 8/26/16
+     * turn on the broadcast receiver to listen for state change
+     *
      * @param intent
      * @param flags
      * @param startId
@@ -53,7 +76,44 @@ public class SyncService extends Service {
      */
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        return super.onStartCommand(intent, flags, startId);
+        Timber.i("Starting sync...");
+
+        // turn on broadcast to listen for network active if the network is not before
+        // if the network is not turned on, not run the service
+        if (!NetworkUtil.isNetworkConnected(this)) {
+            Timber.i("Sync canceled, connection not available");
+            AndroidComponentUtil.toggleComponent(this, SyncOnConnectionAvailable.class, true);
+            stopSelf(startId);
+            return START_NOT_STICKY;
+        }
+
+        // if the network is on, remove the previous subscription (so it's not update with the old data)
+        if (mSubscription != null && !mSubscription.isUnsubscribed())
+            mSubscription.unsubscribe();
+
+        // download the new data and save to db
+        mSubscription = mDataManager.syncStocks(Utils.getYahooStocksQuery())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Subscriber<Stocks>() {
+                    @Override
+                    public void onCompleted() {
+                        Timber.i("Synced successfully!");
+                        stopSelf(startId);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Timber.w(e, "Error syncing.");
+                        stopSelf(startId);
+                    }
+
+                    @Override
+                    public void onNext(Stocks stocks) {
+                    }
+                });
+
+        return START_STICKY;
     }
 
     /**
@@ -65,7 +125,7 @@ public class SyncService extends Service {
     }
 
     /**
-     *  5 - declare broadcastreceiver, when
+     * 5 - declare broadcastreceiver, when it's receive network active, it's will not listen anymore
      */
     public static class SyncOnConnectionAvailable extends BroadcastReceiver {
         @Override

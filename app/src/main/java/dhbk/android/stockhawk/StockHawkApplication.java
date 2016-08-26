@@ -9,6 +9,7 @@ import com.raizlabs.android.dbflow.config.FlowConfig;
 import com.raizlabs.android.dbflow.config.FlowManager;
 
 import dhbk.android.stockhawk.injection.component.ApplicationComponent;
+import dhbk.android.stockhawk.injection.component.DaggerApplicationComponent;
 import dhbk.android.stockhawk.injection.module.ApplicationModule;
 import io.fabric.sdk.android.Fabric;
 import timber.log.Timber;
