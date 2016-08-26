@@ -91,7 +91,7 @@ public class SyncService extends Service {
         if (mSubscription != null && !mSubscription.isUnsubscribed())
             mSubscription.unsubscribe();
 
-        // download the new data and save to db
+        // fixme download the new data and save to db, rememeber to unsubscribe it when it's not done yet
         mSubscription = mDataManager.syncStocks(Utils.getYahooStocksQuery())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
