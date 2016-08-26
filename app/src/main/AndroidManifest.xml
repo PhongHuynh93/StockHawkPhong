@@ -23,11 +23,7 @@
             </intent-filter>
         </activity>
 
-        <service
-            android:name=".SyncService"
-            android:enabled="true"
-            android:exported="true">
-        </service>
+        <service android:name=".SyncService"/>
 
 
         <!--5 declare broadcast receiver-->
@@ -39,7 +35,7 @@
             android:name=".SyncService$SyncOnConnectionAvailable"
             android:enabled="false">
             <intent-filter>
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
             </intent-filter>
         </receiver>
     </application>
