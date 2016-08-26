@@ -71,7 +71,6 @@ public class DatabaseHelper {
      */
     public Observable<Stocks> getStocks() {
         return Observable.defer(() -> {
-
             /**
              * fixme - read all contains in queryList
              */

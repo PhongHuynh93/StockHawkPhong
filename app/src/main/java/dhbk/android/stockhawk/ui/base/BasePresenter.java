@@ -4,6 +4,9 @@ package dhbk.android.stockhawk.ui.base;
  * Base class that implements the Presenter interface and provides a base implementation for
  * attachView() and detachView(). It also handles keeping a reference to the mvpView that
  * can be accessed from the children classes by calling getMvpView().
+ *
+ *
+ * fixme - this is a base presenter that control attach, or detach view, check view presenter
  */
 public class BasePresenter<T extends MvpView> implements Presenter<T> {
 
