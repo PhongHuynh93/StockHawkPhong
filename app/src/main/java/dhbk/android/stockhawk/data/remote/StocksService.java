@@ -39,7 +39,7 @@ public interface StocksService {
     /******** Helper class that sets up a new services *******/
     class Creator {
         /**
-         *
+         * fixme - create retrofit endpoint instance and retrofit client with log
          * @return the endpoint which is used to get the info from server
          */
         public static StocksService newStocksService() {

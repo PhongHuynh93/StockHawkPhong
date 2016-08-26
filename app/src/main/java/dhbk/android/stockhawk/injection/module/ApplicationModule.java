@@ -34,7 +34,7 @@ public class ApplicationModule {
         return mApplication;
     }
 
-    // provice service
+    // provice api endpoint
     @Provides
     @Singleton
     StocksService provideRibotsService() {
