@@ -8,6 +8,7 @@ import android.net.ConnectivityManager;
 import android.os.IBinder;
 
 import dhbk.android.stockhawk.util.NetworkUtil;
+import timber.log.Timber;
 
 public class SyncService extends Service {
     public SyncService() {
