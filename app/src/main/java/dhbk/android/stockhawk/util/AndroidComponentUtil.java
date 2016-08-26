@@ -9,6 +9,13 @@ import android.content.pm.PackageManager;
  * Created by huynhducthanhphong on 8/26/16.
  */
 public class AndroidComponentUtil {
+
+    /**
+     * fixme tự ta phải bật hay tắt 1 component (vd như ta tự bật broadcast receiver, thích hợp khi ta phải đợi 1 cái gì đó xảy ra ta mới bật đươc chứ ko phải đợi onResume rồi bật...)
+     * @param context
+     * @param componentClass class muốn cho nó chạy hay dừng
+     * @param enable cho phép component chạy hay dừng nó
+     */
     public static void toggleComponent(Context context, Class componentClass, boolean enable) {
         ComponentName componentName = new ComponentName(context, componentClass);
         PackageManager packageManager = context.getPackageManager();

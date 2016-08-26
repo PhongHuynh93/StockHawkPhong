@@ -26,8 +26,7 @@ public class SyncService extends Service {
     public static class SyncOnConnectionAvailable extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            if (intent.getAction().equals(ConnectivityManager.CONNECTIVITY_ACTION)
-                    && NetworkUtil.isNetworkConnected(context)) {
+            if (intent.getAction().equals(ConnectivityManager.CONNECTIVITY_ACTION) && NetworkUtil.isNetworkConnected(context)) {
                 Timber.i("Connection is now available, triggering sync...");
                 AndroidComponentUtil.toggleComponent(context, this.getClass(), false);
                 context.startService(getStartIntent(context));
