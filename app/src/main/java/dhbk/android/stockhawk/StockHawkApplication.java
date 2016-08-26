@@ -1,6 +1,7 @@
 package dhbk.android.stockhawk;
 
 import android.app.Application;
+import android.content.Context;
 
 import timber.log.Timber;
 
@@ -17,5 +18,17 @@ public class StockHawkApplication extends Application{
             Timber.plant(new Timber.DebugTree());
         }
 
+    }
+
+
+    //    2 get this application
+
+    /**
+     *
+     * @param context a class call this method must have a context
+     * @return
+     */
+    public static StockHawkApplication get(Context context) {
+        return (StockHawkApplication) context.getApplicationContext();
     }
 }
