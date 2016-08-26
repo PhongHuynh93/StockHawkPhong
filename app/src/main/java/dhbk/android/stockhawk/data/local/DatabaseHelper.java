@@ -14,7 +14,6 @@ import dhbk.android.stockhawk.data.model.Quote_Table;
 import dhbk.android.stockhawk.data.model.multiple.Stocks;
 import dhbk.android.stockhawk.data.model.single.Stock;
 import rx.Observable;
-import rx.functions.Func0;
 
 @Singleton
 public class DatabaseHelper {
@@ -92,16 +91,13 @@ public class DatabaseHelper {
      * @return
      */
     public Observable<Stocks> deleteStock(final String symbol) {
-        return Observable.defer(new Func0<Observable<Stocks>>() {
-            @Override
-            public Observable<Stocks> call() {
+        return Observable.defer(() -> {
 
-                // FIXME: 8/26/16 delete the table quote
-                Delete.table(Quote.class,
-                        Quote_Table.msymbol.eq(symbol));
+            // FIXME: 8/26/16 delete the table quote
+            Delete.table(Quote.class,
+                    Quote_Table.msymbol.eq(symbol));
 
-                return getStocks();
-            }
+            return getStocks();
         });
     }
 

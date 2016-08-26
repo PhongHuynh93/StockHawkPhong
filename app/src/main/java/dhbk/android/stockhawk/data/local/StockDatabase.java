@@ -3,7 +3,7 @@ package dhbk.android.stockhawk.data.local;
 import com.raizlabs.android.dbflow.annotation.Database;
 
 /**
- * Created by Rajan Maurya on 23/08/16.
+ * fixme - declare the database used in this project
  */
 //Creating the database with anme and version
 @Database(name = StockDatabase.NAME, version = StockDatabase.VERSION, foreignKeysSupported = true)
