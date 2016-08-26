@@ -3,7 +3,11 @@ package dhbk.android.stockhawk;
 import android.app.Application;
 import android.content.Context;
 
+import com.raizlabs.android.dbflow.config.FlowConfig;
+import com.raizlabs.android.dbflow.config.FlowManager;
+
 import dhbk.android.stockhawk.injection.component.ApplicationComponent;
+import dhbk.android.stockhawk.injection.module.ApplicationModule;
 import timber.log.Timber;
 
 /**
@@ -27,6 +31,7 @@ public class StockHawkApplication extends Application {
             Fabric.with(this, new Crashlytics());
         }
 
+//        instantiate DBFlow in our main application.
         FlowManager.init(new FlowConfig.Builder(this).build());
         Stetho.initializeWithDefaults(this);
     }
