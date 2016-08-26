@@ -3,7 +3,7 @@ package dhbk.android.stockhawk.data;
 /**
  * Created by Rajan Maurya on 16/08/16.
  *
- * todo 9 - declare constant for endpoint
+ *  9 - declare constant for endpoint
  */
 public class ApiEndPoint {
 

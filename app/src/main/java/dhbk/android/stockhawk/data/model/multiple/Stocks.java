@@ -5,6 +5,9 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
+/**
+ *
+ */
 public class Stocks implements Parcelable {
 
     @SerializedName("query")
@@ -24,7 +27,6 @@ public class Stocks implements Parcelable {
                 "mQuery=" + mQuery +
                 '}';
     }
-
 
     @Override
     public int describeContents() {

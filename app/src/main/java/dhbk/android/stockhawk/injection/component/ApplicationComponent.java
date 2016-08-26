@@ -17,9 +17,10 @@ import dhbk.android.stockhawk.data.local.PreferencesHelper;
 import dhbk.android.stockhawk.data.remote.StocksService;
 import dhbk.android.stockhawk.injection.ApplicationContext;
 import dhbk.android.stockhawk.injection.module.ApplicationModule;
+import dhbk.android.stockhawk.util.RxEventBus;
 
 /**
- * todo 6 - declare component
+ *  6 - declare component
  */
 @Singleton
 @Component(modules = ApplicationModule.class)

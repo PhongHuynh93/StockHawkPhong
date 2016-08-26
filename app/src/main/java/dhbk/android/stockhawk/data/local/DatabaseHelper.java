@@ -19,16 +19,26 @@ import rx.functions.Func0;
 @Singleton
 public class DatabaseHelper {
 
+    /**
+     * constructor injection
+     */
     @Inject
     public DatabaseHelper() {
     }
 
-
+    /**
+     *
+     * @param stock
+     * @return
+     */
     public Observable<Stocks> setStocks(final Stocks stock) {
+        /**
+         * do not create the Observable until the observer subscribes, and create a fresh Observable for each observer
+         * @see <a href="http://reactivex.io/documentation/operators/defer.html"></a>
+         */
         return Observable.defer(new Func0<Observable<Stocks>>() {
             @Override
             public Observable<Stocks> call() {
-
                 List<Quote> quote = stock.getQuery().getResult().getQuote();
                 Observable.from(quote)
                         .subscribe(new Action1<Quote>() {
@@ -43,6 +53,11 @@ public class DatabaseHelper {
         });
     }
 
+    /**
+     *
+     * @param stock
+     * @return
+     */
     public Observable<Stock> setStock(final Stock stock) {
         return Observable.defer(new Func0<Observable<Stock>>() {
             @Override
@@ -56,6 +71,10 @@ public class DatabaseHelper {
         });
     }
 
+    /**
+     *
+     * @return
+     */
     public Observable<Stocks> getStocks() {
         return Observable.defer(new Func0<Observable<Stocks>>() {
             @Override
@@ -73,6 +92,11 @@ public class DatabaseHelper {
         });
     }
 
+    /**
+     *
+     * @param symbol
+     * @return
+     */
     public Observable<Stocks> deleteStock(final String symbol) {
         return Observable.defer(new Func0<Observable<Stocks>>() {
             @Override

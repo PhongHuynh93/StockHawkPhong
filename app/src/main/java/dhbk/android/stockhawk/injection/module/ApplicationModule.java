@@ -7,11 +7,12 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import dhbk.android.stockhawk.data.remote.StocksService;
 import dhbk.android.stockhawk.injection.ApplicationContext;
 
 /**
  * Provide application-level dependencies.
- * todo 7 - declare module
+ *  7 - declare module
  */
 @Module
 public class ApplicationModule {
