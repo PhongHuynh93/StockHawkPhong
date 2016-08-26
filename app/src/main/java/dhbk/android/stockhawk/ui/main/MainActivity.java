@@ -8,11 +8,15 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.text.InputType;
+import android.view.Gravity;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.Theme;
 
+import com.crashlytics.android.Crashlytics;
+import io.fabric.sdk.android.Fabric;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -25,6 +29,7 @@ import dhbk.android.stockhawk.SyncService;
 import dhbk.android.stockhawk.data.model.Quote;
 import dhbk.android.stockhawk.touch_helper.SimpleItemTouchHelperCallback;
 import dhbk.android.stockhawk.ui.base.BaseActivity;
+import dhbk.android.stockhawk.util.DialogFactory;
 import dhbk.android.stockhawk.util.NetworkUtil;
 
 public class MainActivity  extends BaseActivity implements
@@ -60,6 +65,7 @@ public class MainActivity  extends BaseActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
@@ -91,44 +97,63 @@ public class MainActivity  extends BaseActivity implements
      */
     @OnClick(R.id.fb_add_stock)
     void onClickAddStock() {
+        // is network connect, show a dialog
         if (NetworkUtil.isNetworkConnected(this)) {
             showMaterialDialogAddStock();
-        } else {
+        }
+        // if not, show a toast to inform to user
+        else {
             Toast.makeText(this, getResources().getString(R.string.network_toast),
                     Toast.LENGTH_SHORT).show();
         }
     }
 
-    // TODO: 8/26/16
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mMainPresenter.detachView();
+    }
+
+    // : 8/26/16, remove a stock
     @Override
     public void onStockDismiss(String symbol) {
-
+        mMainPresenter.deleteStock(symbol);
     }
 
-    // TODO: 8/26/16
+    // : 8/26/16, change the stocks data in the adapter and reset that list
     @Override
-    public void showStocks(List<Quote> quoteList) {
-
+    public void showStocks(List<Quote> stocks) {
+        mStocksAdapter.setStocks(stocks);
+        mStocksAdapter.notifyDataSetChanged();
     }
 
-    // TODO: 8/26/16
+    // TODO: 8/26/16, reset the list and show anothering
     @Override
     public void showStocksEmpty() {
-
+        List<Quote> quotes = new ArrayList<>();
+        mStocksAdapter.setStocks(quotes);
+        mStocksAdapter.notifyDataSetChanged();
+        Toast.makeText(this, R.string.empty_stocks, Toast.LENGTH_LONG).show();
     }
 
     // TODO: 8/26/16
     @Override
     public void showStock(Quote quote) {
-
+        mStocksAdapter.setStock(quote);
     }
 
     // TODO: 8/26/16
     @Override
     public void showStockDoesNotExist() {
-
+        Toast toast = Toast.makeText(this, getResources().getString(R.string.stock_does_not_exist),
+                Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.CENTER, Gravity.CENTER, 0);
+        toast.show();
     }
 
+    /**
+     * show a material dialog
+     */
     @Override
     public void showMaterialDialogAddStock() {
         new MaterialDialog.Builder(this).title(R.string.symbol_search)
@@ -153,17 +178,21 @@ public class MainActivity  extends BaseActivity implements
     }
 
     @Override
-    public Boolean checkSymbolExistOrNot(String symbol, List<Quote> quoteList) {
-        return null;
+    public Boolean checkSymbolExistOrNot(String symbol, List<Quote> stock) {
+        return mMainPresenter.checkStocksExistOrNot(symbol, stock);
     }
 
     @Override
     public void showStockAlreadyExist() {
-
+        Toast toast = Toast.makeText(this, getResources().getString(R.string.stocks_already_exist),
+                Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.CENTER, Gravity.CENTER, 0);
+        toast.show();
     }
 
     @Override
     public void showError() {
-
+        DialogFactory.createGenericErrorDialog(this, getString(R.string.error_loading_stocks))
+                .show();
     }
 }

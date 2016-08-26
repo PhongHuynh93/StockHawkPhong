@@ -10,6 +10,7 @@ import java.util.concurrent.atomic.AtomicLong;
 import dhbk.android.stockhawk.StockHawkApplication;
 import dhbk.android.stockhawk.injection.component.ActivityComponent;
 import dhbk.android.stockhawk.injection.component.ConfigPersistentComponent;
+import dhbk.android.stockhawk.injection.component.DaggerConfigPersistentComponent;
 import dhbk.android.stockhawk.injection.module.ActivityModule;
 import timber.log.Timber;
 
