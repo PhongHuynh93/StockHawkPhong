@@ -2,6 +2,7 @@ package dhbk.android.stockhawk.injection.component;
 
 import dagger.Component;
 import dhbk.android.stockhawk.injection.ConfigPersistent;
+import dhbk.android.stockhawk.injection.module.ActivityModule;
 
 /**
  * A dagger component that will live during the lifecycle of an Activity but it won't
