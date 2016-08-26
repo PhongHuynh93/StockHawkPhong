@@ -28,6 +28,18 @@
             android:enabled="true"
             android:exported="true">
         </service>
+
+
+        <!--5 declare broadcast receiver-->
+        <!--The ConnectivityManager broadcasts the CONNECTIVITY_ACTION ("android.net.conn.CONNECTIVITY_CHANGE") action whenever the connectivity details have changed. -->
+        <!--You can register a broadcast receiver in your manifest to listen for these changes and resume (or suspend) your background updates accordingly.-->
+        <receiver
+            android:name=".SyncService$SyncOnConnectionAvailable"
+            android:enabled="false">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
