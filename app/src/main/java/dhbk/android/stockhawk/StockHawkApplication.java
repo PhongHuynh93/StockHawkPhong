@@ -3,6 +3,7 @@ package dhbk.android.stockhawk;
 import android.app.Application;
 import android.content.Context;
 
+import dhbk.android.stockhawk.injection.component.ApplicationComponent;
 import timber.log.Timber;
 
 /**
