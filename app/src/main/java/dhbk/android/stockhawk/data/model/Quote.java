@@ -9,9 +9,16 @@ import com.raizlabs.android.dbflow.annotation.ModelContainer;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
 
+import dhbk.android.stockhawk.data.local.StockBaseModel;
+import dhbk.android.stockhawk.data.local.StockDatabase;
+
 
 /**
  * Created by Rajan Maurya on 07/08/16.
+ */
+
+/**
+ * Defining your Tables and column, this model used to send via Intent, so add it parcel
  */
 @Table(database = StockDatabase.class)
 @ModelContainer
