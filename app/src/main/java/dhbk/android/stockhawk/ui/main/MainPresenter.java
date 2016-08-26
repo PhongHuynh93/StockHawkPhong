@@ -52,7 +52,7 @@ public class MainPresenter extends BasePresenter<MainMvpView> {
     }
 
     /**
-     *
+     * load stock from db to recycler
      */
     public void loadStocks() {
         // fixme - presenter will check view before doing anything on view

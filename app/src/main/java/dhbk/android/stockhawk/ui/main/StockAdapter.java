@@ -78,6 +78,11 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockViewHol
         return mQuoteList;
     }
 
+    /**
+     * connect to the host activity
+     * @param listener the host activity which contains this adapter
+     * @return adapter
+     */
     public StockAdapter setOnDismissStockListener(DismissStockListener listener) {
         mDismissStockListener = listener;
         return this;
@@ -107,6 +112,9 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockViewHol
         }
     }
 
+    /**
+     * this is an interface for activity which host this adapter implements
+     */
     public interface DismissStockListener {
         void onStockDismiss(String symbol);
     }
