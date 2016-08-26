@@ -2,12 +2,25 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="dhbk.android.stockhawk">
 
+    <!-- 1 declare permission -->
+    <!-- Allows applications to open network sockets. -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <!-- Allows applications to access information about networks. -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="589643442ce058a0d10001de5eef9b319db74800"
+            />
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -15,6 +28,22 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <service android:name=".SyncService"/>
+
+
+        <!--5 declare broadcast receiver-->
+        <!--The ConnectivityManager broadcasts the CONNECTIVITY_ACTION ("android.net.conn.CONNECTIVITY_CHANGE") action whenever the connectivity details have changed. -->
+        <!--You can register a broadcast receiver in your manifest to listen for these changes and resume (or suspend) your background updates accordingly.-->
+
+        <!--enabled="false" means dont run it when app start, and you must turn it on-->
+        <receiver
+            android:name=".SyncService$SyncOnConnectionAvailable"
+            android:enabled="false">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
