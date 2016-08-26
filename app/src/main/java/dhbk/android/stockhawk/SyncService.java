@@ -98,12 +98,14 @@ public class SyncService extends Service {
                 .subscribe(new Subscriber<Stocks>() {
                     @Override
                     public void onCompleted() {
+                        // FIXME: 8/26/16 when service done it's job, stop itself
                         Timber.i("Synced successfully!");
                         stopSelf(startId);
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        // FIXME: 8/26/16 when error, stop itself
                         Timber.w(e, "Error syncing.");
                         stopSelf(startId);
                     }
@@ -117,10 +119,11 @@ public class SyncService extends Service {
     }
 
     /**
-     * // TODO: 8/26/16
+     * // : 8/26/16 unsubscribe before destroy
      */
     @Override
     public void onDestroy() {
+        if (mSubscription != null) mSubscription.unsubscribe();
         super.onDestroy();
     }
 
