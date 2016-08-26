@@ -4,7 +4,6 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import rx.Observable;
-import rx.functions.Func1;
 import rx.subjects.PublishSubject;
 
 /**
@@ -13,8 +12,16 @@ import rx.subjects.PublishSubject;
 @Singleton
 public class RxEventBus {
 
+    /**
+     * fixme - a Subject is a Observables and Observers
+     *
+     * @see <a href="https://medium.com/@kurtisnusbaum/rxandroid-basics-part-2-6e877af352#.j6696hms1"></a>
+     */
     private final PublishSubject<Object> mBusSubject;
 
+    /**
+     * create subject
+     */
     @Inject
     public RxEventBus() {
         mBusSubject = PublishSubject.create();
@@ -39,18 +46,11 @@ public class RxEventBus {
      * Use this if you only want to subscribe to one type of events.
      */
     public <T> Observable<T> filteredObservable(final Class<T> eventClass) {
-        return mBusSubject.filter(new Func1<Object, Boolean>() {
-            @Override
-            public Boolean call(Object event) {
-                return eventClass.isInstance(event);
-            }
-        }).map(new Func1<Object, T>() {
-            //Safe to cast because of the previous filter
-            @SuppressWarnings("unchecked")
-            @Override
-            public T call(Object event) {
-                return (T) event;
-            }
-        });
+        /**
+         * object này chỉ chứa obj là instance of cái gì đó và nếu instance of thì nó ép kiểu
+         */
+        return mBusSubject
+                .filter(event -> eventClass.isInstance(event))
+                .map(event -> (T) event);
     }
 }
