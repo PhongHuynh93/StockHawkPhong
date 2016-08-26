@@ -18,6 +18,10 @@ public class PreferencesHelper {
 
     private final SharedPreferences mPref;
 
+    /**
+     * constructor inject: add this shared pref to db
+     * @param context
+     */
     @Inject
     public PreferencesHelper(@ApplicationContext Context context) {
         mPref = context.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
