@@ -21,6 +21,7 @@ import dhbk.android.stockhawk.util.RxEventBus;
 
 /**
  *  6 - declare component
+ *  provide singleton objects to sub component
  */
 @Singleton
 @Component(modules = ApplicationModule.class)
