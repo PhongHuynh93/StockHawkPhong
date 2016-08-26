@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 
 import com.crashlytics.android.Crashlytics;
+import com.facebook.stetho.Stetho;
 import com.raizlabs.android.dbflow.config.FlowConfig;
 import com.raizlabs.android.dbflow.config.FlowManager;
 
@@ -35,6 +36,8 @@ public class StockHawkApplication extends Application {
 
 //        instantiate DBFlow in our main application.
         FlowManager.init(new FlowConfig.Builder(this).build());
+
+        // initialize the stetho library
         Stetho.initializeWithDefaults(this);
     }
 

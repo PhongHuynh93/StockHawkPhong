@@ -11,7 +11,9 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 import dhbk.android.stockhawk.SyncService;
+import dhbk.android.stockhawk.data.remote.StocksService;
 import dhbk.android.stockhawk.injection.ApplicationContext;
+import dhbk.android.stockhawk.injection.module.ApplicationModule;
 
 /**
  * todo 6 - declare component
