@@ -62,7 +62,7 @@ dependencies {
     provided 'javax.annotation:jsr250-api:1.0'
     //    logcat
     compile 'com.jakewharton.timber:timber:4.3.0'
-    //    dbflow
+    //  fixme  dbflow
     apt "com.github.Raizlabs.DBFlow:dbflow-processor:${dbflow_version}"
     compile "com.github.Raizlabs.DBFlow:dbflow-core:${dbflow_version}"
     compile "com.github.Raizlabs.DBFlow:dbflow:${dbflow_version}"

@@ -15,6 +15,9 @@ import dhbk.android.stockhawk.data.model.multiple.Stocks;
 import dhbk.android.stockhawk.data.model.single.Stock;
 import rx.Observable;
 
+/**
+ * make table using DBFlow
+ */
 @Singleton
 public class DatabaseHelper {
 
