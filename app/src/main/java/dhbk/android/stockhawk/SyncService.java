@@ -78,16 +78,18 @@ public class SyncService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         Timber.i("Starting sync...");
 
-        // turn on broadcast to listen for network active if the network is not before
+        // fixme turn on broadcast to listen for network active if the network is not before
         // if the network is not turned on, not run the service
         if (!NetworkUtil.isNetworkConnected(this)) {
             Timber.i("Sync canceled, connection not available");
+            // fixme - this method is called when the activity onCreated get called
+            // if at first, the network is not active, turn on register so it can register for active network
             AndroidComponentUtil.toggleComponent(this, SyncOnConnectionAvailable.class, true);
             stopSelf(startId);
             return START_NOT_STICKY;
         }
 
-        // if the network is on, remove the previous subscription (so it's not update with the old data)
+        // fixme - if the network is on, remove the previous subscription (so it's not update with the old data)
         if (mSubscription != null && !mSubscription.isUnsubscribed())
             mSubscription.unsubscribe();
 
@@ -99,6 +101,7 @@ public class SyncService extends Service {
                     @Override
                     public void onCompleted() {
                         // FIXME: 8/26/16 when service done it's job, stop itself
+                        //
                         Timber.i("Synced successfully!");
                         stopSelf(startId);
                     }
@@ -106,6 +109,7 @@ public class SyncService extends Service {
                     @Override
                     public void onError(Throwable e) {
                         // FIXME: 8/26/16 when error, stop itself
+                        //
                         Timber.w(e, "Error syncing.");
                         stopSelf(startId);
                     }
@@ -116,6 +120,7 @@ public class SyncService extends Service {
                 });
 
         return START_STICKY;
+        // end starting service
     }
 
     /**
@@ -130,6 +135,9 @@ public class SyncService extends Service {
     /**
      * 5 - declare broadcastreceiver, when it's receive network active, it's will not listen anymore
      */
+
+    // fixme - method is called when the network state is changed,
+        // but we really do something when the network state is from down to up, and we start the service to sync the data
     public static class SyncOnConnectionAvailable extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {

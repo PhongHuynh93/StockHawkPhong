@@ -33,7 +33,7 @@
         <service android:name=".SyncService"/>
 
 
-        <!--5 declare broadcast receiver-->
+        <!--5 todo declare broadcast receiver so it can receive an intent when the network state is changed-->
         <!--The ConnectivityManager broadcasts the CONNECTIVITY_ACTION ("android.net.conn.CONNECTIVITY_CHANGE") action whenever the connectivity details have changed. -->
         <!--You can register a broadcast receiver in your manifest to listen for these changes and resume (or suspend) your background updates accordingly.-->
 
