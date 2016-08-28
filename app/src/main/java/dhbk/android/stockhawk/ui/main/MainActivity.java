@@ -94,10 +94,10 @@ public class MainActivity  extends BaseActivity implements
 
     /**
      * when click the fab, add the stock to recyclerview
+     *         // fixme is network connect, show a dialog
      */
     @OnClick(R.id.fb_add_stock)
     void onClickAddStock() {
-        // fixme is network connect, show a dialog
         if (NetworkUtil.isNetworkConnected(this)) {
             showMaterialDialogAddStock();
         }
@@ -107,6 +107,7 @@ public class MainActivity  extends BaseActivity implements
                     Toast.LENGTH_SHORT).show();
         }
     }
+    // end making a dialog
 
     @Override
     protected void onDestroy() {
