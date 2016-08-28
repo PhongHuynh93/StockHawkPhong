@@ -86,10 +86,11 @@ public class MainActivity  extends BaseActivity implements
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(callback);
         itemTouchHelper.attachToRecyclerView(mRecyclerView);
 
-        // TODO: 8/26/16 find out the meaning of this row
+        // fixme: start the service when this activity is create
         if (getIntent().getBooleanExtra(EXTRA_TRIGGER_SYNC_FLAG, true)) {
             startService(SyncService.getStartIntent(this));
         }
+        // end start service
     }
 
     /**
