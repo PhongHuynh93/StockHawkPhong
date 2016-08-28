@@ -14,6 +14,8 @@ public class UrlBuilder {
 
     /**
      * This Method Add the Select Yahoo query to Request URl
+     *
+     * fixme - note to encode the string before query the server
      */
     public static void addYahooSelectQuotesQuery() {
         /**

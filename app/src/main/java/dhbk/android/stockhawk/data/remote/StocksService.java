@@ -28,7 +28,7 @@ public interface StocksService {
     String ENDPOINT = "https://query.yahooapis.com/v1/public/";
 
 
-    // 1 - declare endpoint
+    // 1 - declare endpoint, fixme note that you can see the encoded = true,
     @GET(ApiEndPoint.YAHOO_QUERY_LANGUAGE + ApiEndPoint.RESPONSE_FORMAT)
     Observable<Stocks> getStocks(@Query(value="q", encoded=true) String q);
 
@@ -41,6 +41,9 @@ public interface StocksService {
         /**
          * fixme - create retrofit endpoint instance and retrofit client with log
          * @return the endpoint which is used to get the info from server
+         *
+         *
+         * fixme - create the okhttp client and add it to retrofit instance
          */
         public static StocksService newStocksService() {
             // add library to log http response
