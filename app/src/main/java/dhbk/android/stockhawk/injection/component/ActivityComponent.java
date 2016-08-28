@@ -8,7 +8,7 @@ import dhbk.android.stockhawk.ui.main.MainActivity;
  * This component inject dependencies to all Activities across the application
  *
  *
- * this is a subcomponent
+ * fixme this is a subcomponent
  */
 // TODO: 8/26/16 12 declare activity component to inject to mainactivity
 @PerActivity

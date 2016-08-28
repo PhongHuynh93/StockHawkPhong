@@ -13,7 +13,7 @@ import dhbk.android.stockhawk.injection.module.ActivityModule;
  */
 
 /**
- * todo 11 - declare  dependence component
+ * fixme 11 - declare  dependence component
  *
  * anno này chỉ là component này tồn tại trong activity, destroy thì mất nhưng ko mất khi condif change
  *
