@@ -10,6 +10,9 @@ import dhbk.android.stockhawk.data.model.single.Stock;
 import dhbk.android.stockhawk.data.remote.StocksService;
 import rx.Observable;
 
+/**
+ * todo - contains all database here(local + remote)
+ */
 @Singleton
 public class DataManager {
 
@@ -19,9 +22,10 @@ public class DataManager {
 
     /**
      * constructor injection: add DataManager to dagger
-     * @param stocksService retrofit endpoints
+     *
+     * @param stocksService     retrofit endpoints
      * @param preferencesHelper pref
-     * @param databaseHelper get/ set the stock from db
+     * @param databaseHelper    get/ set the stock from db
      */
     @Inject
     public DataManager(StocksService stocksService,
@@ -34,6 +38,7 @@ public class DataManager {
 
     /**
      * get pref
+     *
      * @return pref
      */
     public PreferencesHelper getPreferencesHelper() {
@@ -42,6 +47,7 @@ public class DataManager {
 
     /**
      * fixme get stocks gain by getting stock from network and save it to db again
+     * ta đặt tên là sync stock
      * @param query
      * @return
      */
@@ -52,6 +58,7 @@ public class DataManager {
 
     /**
      * get a stock from network
+     *
      * @param query
      * @return
      */
@@ -62,6 +69,7 @@ public class DataManager {
 
     /**
      * get stocks
+     *
      * @return
      */
     public Observable<Stocks> getStocks() {
@@ -70,6 +78,7 @@ public class DataManager {
 
     /**
      * delete stock in db and get stock
+     *
      * @param symbol
      * @return
      */

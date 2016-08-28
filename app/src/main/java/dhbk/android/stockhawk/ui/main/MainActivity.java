@@ -13,9 +13,8 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.Theme;
-
 import com.crashlytics.android.Crashlytics;
-import io.fabric.sdk.android.Fabric;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +30,7 @@ import dhbk.android.stockhawk.touch_helper.SimpleItemTouchHelperCallback;
 import dhbk.android.stockhawk.ui.base.BaseActivity;
 import dhbk.android.stockhawk.util.DialogFactory;
 import dhbk.android.stockhawk.util.NetworkUtil;
+import io.fabric.sdk.android.Fabric;
 
 public class MainActivity  extends BaseActivity implements
         MainMvpView, StockAdapter.DismissStockListener {
@@ -97,7 +97,7 @@ public class MainActivity  extends BaseActivity implements
      */
     @OnClick(R.id.fb_add_stock)
     void onClickAddStock() {
-        // is network connect, show a dialog
+        // fixme is network connect, show a dialog
         if (NetworkUtil.isNetworkConnected(this)) {
             showMaterialDialogAddStock();
         }
@@ -152,7 +152,7 @@ public class MainActivity  extends BaseActivity implements
     }
 
     /**
-     * show a material dialog
+     * fixme show a material dialog, build a dialog using the library
      */
     @Override
     public void showMaterialDialogAddStock() {

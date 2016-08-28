@@ -58,7 +58,7 @@ public class MainPresenter extends BasePresenter<MainMvpView> {
         // fixme - presenter will check view before doing anything on view
         checkViewAttached();
 
-        // get stock form db in new thread and show stock in view
+        // fixme - get stock form db in new thread and show stock in view
         mSubscriptions.add(mDataManager.getStocks()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())

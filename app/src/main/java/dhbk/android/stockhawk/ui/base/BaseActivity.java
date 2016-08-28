@@ -23,6 +23,8 @@ import timber.log.Timber;
  * <p>
  * <p>
  * base for activity reuse
+ *
+ * fixme - bỏ component trong hashmap thì component co thể sống sót khi config change,
  */
 public class BaseActivity extends AppCompatActivity {
     private static final String KEY_ACTIVITY_ID = "KEY_ACTIVITY_ID";
