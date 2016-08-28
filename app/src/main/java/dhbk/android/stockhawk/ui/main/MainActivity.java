@@ -155,6 +155,8 @@ public class MainActivity  extends BaseActivity implements
 
     /**
      * fixme show a material dialog, build a dialog using the library
+     *
+     * use library
      */
     @Override
     public void showMaterialDialogAddStock() {
@@ -178,6 +180,7 @@ public class MainActivity  extends BaseActivity implements
                         })
                 .show();
     }
+    // ending using dialog library
 
     @Override
     public Boolean checkSymbolExistOrNot(String symbol, List<Quote> stock) {
