@@ -6,7 +6,8 @@ package dhbk.android.stockhawk.ui.base;
  * can be accessed from the children classes by calling getMvpView().
  *
  *
- * fixme - this is a base presenter that control attach, or detach view, check view presenter
+ *
+ *  -  this is a base presenter that control attach, or detach view, check view presenter
  */
 public class BasePresenter<T extends MvpView> implements Presenter<T> {
 

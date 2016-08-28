@@ -17,6 +17,7 @@ import timber.log.Timber;
 /**
  * Created by huynhducthanhphong on 8/26/16.
  * <p>
+ *
  * Abstract activity that every other Activity in this application must implement. It handles
  * creation of Dagger components and makes sure that instances of ConfigPersistentComponent survive
  * across configuration changes.
