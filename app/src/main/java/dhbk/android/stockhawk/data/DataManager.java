@@ -50,6 +50,10 @@ public class DataManager {
      * ta đặt tên là sync stock
      * @param query
      * @return
+     *
+     * khác nhau giữa flatmap / map / concatMap
+     * @see <a href="http://stackoverflow.com/questions/22847105/when-do-you-use-map-vs-flatmap-in-rxjava"></a>
+     * @see <a href="http://fernandocejas.com/2015/01/11/rxjava-observable-tranformation-concatmap-vs-flatmap/"></a>
      */
     public Observable<Stocks> syncStocks(String query) {
         return mStocksService.getStocks(query)
